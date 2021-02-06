@@ -1,13 +1,23 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"flag"
+	"fmt"
+	"os"
+
+	"./config"
+	"./db"
+	"./server"
+)
 
 func main() {
-    r := gin.Default()
-    r.GET("/ping", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "pong",
-        })
-    })
-    r.Run() // listen and serve on 0.0.0.0:8080
+	environment := flag.String("e", "development", "")
+	flag.Usage = func() {
+		fmt.Println("Usage: server -e {mode}")
+		os.Exit(1)
+	}
+	flag.Parse()
+	config.Init(*environment)
+	db.Init()
+	server.Init()
 }
