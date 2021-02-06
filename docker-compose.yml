@@ -1,20 +1,22 @@
 version: '3'
 
-# マウント時に vendor 以下を削除してしまうため、別 volume を指定する
-# Gopkg.toml を編集する場合、vendor ボリュームも削除しイメージを再構築する
-volumes:
-  vendor:
-
 services:
   api:
     build:
       context: .
       dockerfile: docker/api/Dockerfile
     volumes:
-      - ./src/api:/go/src/api
-      - vendor:/go/src/api/vendor
+      - .:/go/src/github.com/htt-back
     ports:
-      - 3001:3001
-    tty:
-      true
+      - 38080:8080
+    tty: true
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: hitotsu
+      POSTGRES_PASSWORD: hitotsu
+      POSTGRES_DB: hitotsu_develop
+    ports:
+      - 35432:5432
 
