@@ -6,10 +6,11 @@ services:
       context: .
       dockerfile: docker/api/Dockerfile
     volumes:
-      - .:/go/src/github.com/htt-back
+      - .:/go/src/htt-back
     ports:
       - 38080:8080
     tty: true
+    command: go run main.go
 
   db:
     image: postgres:alpine
