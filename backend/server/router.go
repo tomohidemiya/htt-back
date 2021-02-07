@@ -6,24 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitializeRouter() *gin.Engine {
-	router := gin.New()
-	router.Use(gin.Logger())
-	router.Use(gin.Recovery())
+func InjectRouting(engine *gin.Engine) {
+	// Anyone
+	healthCtrl := health.Controller{}
+	engine.GET("/ping", healthCtrl.Index)
 
-	health := new(controllers.HealthController)
-
-	router.GET("/health", health.Status)
-	router.Use(middlewares.AuthMiddleware())
-
-	//v1 := router.Group("v1")
-	//{
-	//	userGroup := v1.Group("user")
-	//	{
-	//		user := new(controllers.UserController)
-	//		userGroup.GET("/:id", user.Retrieve)
-	//	}
-	//}
-	return router
-
+	// Need Authentication
+	engine.Use(middlewares.AuthMiddleware())
 }

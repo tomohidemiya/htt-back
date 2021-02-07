@@ -13,3 +13,6 @@
 
 gin-bin
 .env
+
+.idea
+.DS_Store
