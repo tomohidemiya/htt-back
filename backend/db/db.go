@@ -1,7 +1,7 @@
 package db
 
 import (
-	"app/config"
+	"app/backend/config"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -13,12 +13,12 @@ var (
 )
 
 func Init()  {
-	host := config.Getenv("POSTGRES_HOST", "")
-	port := config.Getenv("POSTGRES_PORT", "")
-	user := config.Getenv("POSTGRES_USER", "")
-	pwd := config.Getenv("POSTGRES_PASSWORD", "")
-	dbName := config.Getenv("POSTGRES_DB", "")
-	sslMode := config.Getenv("POSTGRES_SSL_ENABLED", "require")
+	host := config.GetEnv("POSTGRES_HOST", "")
+	port := config.GetEnv("POSTGRES_PORT", "")
+	user := config.GetEnv("POSTGRES_USER", "")
+	pwd := config.GetEnv("POSTGRES_PASSWORD", "")
+	dbName := config.GetEnv("POSTGRES_DB", "")
+	sslMode := config.GetEnv("POSTGRES_SSL_ENABLED", "require")
 	dsn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		host, port, user, dbName, pwd, sslMode)
 	db, err = gorm.Open("postgres", dsn)

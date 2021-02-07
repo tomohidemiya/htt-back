@@ -9,7 +9,7 @@ func Init()  {
 	_ = godotenv.Load("../.env")
 }
 
-func Getenv(key string, fallback string) string {
+func GetEnv(key string, fallback string) string {
 	if val, ok := os.LookupEnv(key); ok {
 		return val
 	}

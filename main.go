@@ -1,8 +1,8 @@
 package main
 
 import (
-	"app/config"
-	"app/db"
+	"app/backend/config"
+	"app/backend/db"
 	"github.com/gin-gonic/gin"
 )
 
