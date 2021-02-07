@@ -2,16 +2,24 @@ version: '3'
 
 services:
   api:
-    build:
-      context: .
-      dockerfile: docker/api/Dockerfile
+    image: golang:1.15.0-alpine
     volumes:
-      - .:/go/src/htt-back
+      - .:/go/src/app
     ports:
-      - 38080:8080
+      - 33001:3001
     tty: true
-    command: go run main.go
-
+    command: >
+      sh -c "cd /go/src/app &&
+      apk update &&
+      apk add --no-cache git &&
+      GO111MODULE=off go get -u github.com/codegangsta/gin &&
+      go mod init || : &&
+      gin -i run"
+    environment:
+      GO111MODULE: "on"
+      POSTGRES_USER: "hitotsu"
+      POSTGRES_PASSWORD: "hitotsu"
+      POSTGRES_DB: "hitotsu_develop"
   db:
     image: postgres:alpine
     environment:
