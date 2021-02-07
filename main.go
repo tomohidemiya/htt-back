@@ -4,10 +4,15 @@ import (
 	"app/backend/config"
 	"app/backend/db"
 	"app/backend/server"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	config.Init()
 	db.Init()
-	server.Run()
+	defer db.Close()
+
+	r := gin.Default()
+	server.InjectRouting(r)
+	r.Run()
 }
