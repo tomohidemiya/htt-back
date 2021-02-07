@@ -30,3 +30,9 @@ func Init()  {
 func getDB() *gorm.DB {
 	return db
 }
+
+func Close() {
+	if err := db.Close(); err != nil {
+		panic(err)
+	}
+}
