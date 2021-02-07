@@ -13,3 +13,5 @@
 
 gin-bin
 .env
+
+.idea
