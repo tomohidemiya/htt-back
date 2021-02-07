@@ -1,10 +1,10 @@
 package db
 
 import (
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-
-	//"../config"
+	"fmt"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"os"
 )
 
 var (
@@ -12,15 +12,19 @@ var (
 	err error
 )
 
-func Init() {
-	//c := config.GetConfig()
-	dsn := "host=localhost user=gorm password=gorm DB.name=gorm port=5432 sslmode=disable TimeZone=Asia/Tokyo"
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+func Init()  {
+	host := os.Getenv("POSTGRES_HOST")
+	port := os.Getenv("POSTGRES_PORT")
+	user := os.Getenv("POSTGRES_USER")
+	pass :=os.Getenv("POSTGRES_PASSWORD")
+	dbName :=os.Getenv("POSTGRES_DB")
+	dsn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s", host, port, user, dbName, pass)
+	db, err = gorm.Open("postgres", dsn)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func GetDB() *gorm.DB {
+func getDB() *gorm.DB {
 	return db
 }
