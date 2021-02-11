@@ -1,8 +1,9 @@
 package server
 
 import (
-	"app/backend/controllers"
+	health "app/backend/controllers"
 	"app/backend/middlewares"
+
 	"github.com/gin-gonic/gin"
 )
 
