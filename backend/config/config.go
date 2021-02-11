@@ -1,11 +1,12 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
-func Init()  {
+func Init() {
 	_ = godotenv.Load("../.env")
 }
 

@@ -3,16 +3,17 @@ package db
 import (
 	"app/backend/config"
 	"fmt"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 var (
-	db *gorm.DB
+	db  *gorm.DB
 	err error
 )
 
-func Init()  {
+func Init() {
 	host := config.GetEnv("POSTGRES_HOST", "")
 	port := config.GetEnv("POSTGRES_PORT", "")
 	user := config.GetEnv("POSTGRES_USER", "")
