@@ -4,9 +4,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Controller struct{}
+type Pong struct {
+	Message string
+}
 
-func (pc Controller) Index(c *gin.Context) {
+func CheckHertBeat(c *gin.Context) {
 	c.JSON(200, gin.H{
 		"message": "pong",
 	})

@@ -9,8 +9,7 @@ import (
 
 func InjectRouting(engine *gin.Engine) {
 	// Anyone
-	healthCtrl := health.Controller{}
-	engine.GET("/ping", healthCtrl.Index)
+	engine.GET("/ping", health.CheckHertBeat)
 
 	// Need Authentication
 	engine.Use(middlewares.AuthMiddleware())
