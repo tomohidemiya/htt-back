@@ -20,8 +20,8 @@ func TestPingRouter(t *testing.T) {
 
 	assert.Equal(t, response.Code, 200, "API エラー発生")
 
-	var res health.Pong
-	err := json.Unmarshal(response.Body.Bytes(), &res)
+	var resBody health.Pong
+	err := json.Unmarshal(response.Body.Bytes(), &resBody)
 	assert.Nil(t, err)
-	assert.Equal(t, res.Message, "pong", "メッセージ不一致")
+	assert.Equal(t, resBody.Message, "pong", "レスポンスメッセージ不一致")
 }
