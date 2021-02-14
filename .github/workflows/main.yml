@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v1
      
       - name: Get dependencies
-        run: go get -v -t -d ./...; go get golang.org/x/lint/golint
+        run: go get -v -t -d ./...
 
       - name: Linter
-        run: go vet ./...;golint -set_exit_status ./...
+        run: go vet ./...
 
       - name: Test code
         run: make test
