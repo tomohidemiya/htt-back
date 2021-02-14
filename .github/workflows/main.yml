@@ -18,7 +18,7 @@ jobs:
         run: go get -v -t -d ./...
 
       - name: Linter
-        run: make lint
+        run: go vet ./...;golint -set_exit_status ./...
 
       - name: Test code
         run: make test
