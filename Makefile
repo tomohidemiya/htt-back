@@ -43,7 +43,7 @@ test:
 
 .PHONY: migrate
 migrate:
-    @sql-migrate up
+  @sql-migrate up
 
 .PHONY: help
 all: help
